@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Login = () => {
@@ -82,8 +83,11 @@ const Login = () => {
                 />
               </div>
 
+
               <div className="mt-6 text-center"></div>
+
             </form>
+            <Link href={'/signup'}>Have no account</Link>
           </div>
         </div>
       </div>

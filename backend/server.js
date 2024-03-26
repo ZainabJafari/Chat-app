@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
@@ -9,6 +10,12 @@ import userRoutes from "./routes/user.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
 const PORT = process.env.PORT || 2000;
 
 dotenv.config()

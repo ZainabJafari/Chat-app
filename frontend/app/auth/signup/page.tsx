@@ -1,22 +1,56 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
+import GenderCheckbox from "./GenderCheckbox";
+import useSignup from "@/app/hooks/useSignup";
+
+interface InputData {
+  fullName: string;
+  userName: string;
+  password: string;
+  confirmPassword: string;
+  gender: string;
+}
 
 const Signup = () => {
+  const [input, setInput] = useState<InputData>({
+    fullName: "",
+    userName: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  const [loading, signup] = useSignup();
+
+  const handleCheckboxChange = (gender: string) => {
+    setInput({ ...input, gender });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signup(input);
+  };
+
   return (
     <div>
       {" "}
       <div className="rounded-sm border border-stroke bg-white shadow-default">
         <div className="border-stroke xl:w-1/2 xl:border-l-2">
           <div className="p-4 sm:p-12.5 xl:p-17.5">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="mb-2.5 block font-medium text-black dark:text-white">
-                  Name
+                  FullName
                 </label>
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Enter your full name"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={input.fullName}
+                    onChange={(e) =>
+                      setInput({ ...input, fullName: e.target.value })
+                    }
                   />
 
                   <span className="absolute right-4 top-4">
@@ -45,13 +79,17 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label className="mb-2.5 block font-medium text-black dark:text-white">
-                  Email
+                  User Name
                 </label>
                 <div className="relative">
                   <input
-                    type="email"
+                    type="name"
                     placeholder="Enter your email"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={input.userName}
+                    onChange={(e) =>
+                      setInput({ ...input, userName: e.target.value })
+                    }
                   />
 
                   <span className="absolute right-4 top-4">
@@ -83,6 +121,10 @@ const Signup = () => {
                     type="password"
                     placeholder="Enter your password"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={input.password}
+                    onChange={(e) =>
+                      setInput({...input, password: e.target.value })
+                    }
                   />
 
                   <span className="absolute right-4 top-4">
@@ -118,6 +160,8 @@ const Signup = () => {
                     type="password"
                     placeholder="Re-enter your password"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={input.confirmPassword}
+                    onChange={(e) => setInput({...input, confirmPassword: e.target.value })}
                   />
 
                   <span className="absolute right-4 top-4">
@@ -143,15 +187,7 @@ const Signup = () => {
                   </span>
                 </div>
               </div>
-              <div className="felx justify-between">
-                <label htmlFor="checkbox">Female</label>
-                <input
-                  type="checkbox"
-                  id="checkbox"
-                  defaultChecked
-                  className="checkbox"
-                />
-              </div>
+             <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={input.gender} />
 
               <div className="mb-5">
                 <input
