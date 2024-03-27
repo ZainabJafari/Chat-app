@@ -1,18 +1,12 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import GenderCheckbox from "./GenderCheckbox";
 import useSignup from "@/app/hooks/useSignup";
 
-interface InputData {
-  fullName: string;
-  userName: string;
-  password: string;
-  confirmPassword: string;
-  gender: string;
-}
+import { useRouter } from "next/navigation";
 
 const Signup = () => {
-  const [input, setInput] = useState<InputData>({
+  const [input, setInput] = useState({
     fullName: "",
     userName: "",
     password: "",
@@ -21,19 +15,21 @@ const Signup = () => {
   });
 
   const [loading, signup] = useSignup();
+  const router = useRouter();
 
-  const handleCheckboxChange = (gender: string) => {
+  const handleCheckboxChange = (gender) => {
     setInput({ ...input, gender });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(input);
+    console.log("Submit button clicked"); // Kontrollera om denna logg visas i konsolen
+    await signup(input); 
+    router.push('/')
   };
 
   return (
     <div>
-      {" "}
       <div className="rounded-sm border border-stroke bg-white shadow-default">
         <div className="border-stroke xl:w-1/2 xl:border-l-2">
           <div className="p-4 sm:p-12.5 xl:p-17.5">
@@ -123,7 +119,7 @@ const Signup = () => {
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     value={input.password}
                     onChange={(e) =>
-                      setInput({...input, password: e.target.value })
+                      setInput({ ...input, password: e.target.value })
                     }
                   />
 
@@ -161,7 +157,9 @@ const Signup = () => {
                     placeholder="Re-enter your password"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     value={input.confirmPassword}
-                    onChange={(e) => setInput({...input, confirmPassword: e.target.value })}
+                    onChange={(e) =>
+                      setInput({ ...input, confirmPassword: e.target.value })
+                    }
                   />
 
                   <span className="absolute right-4 top-4">
@@ -187,7 +185,10 @@ const Signup = () => {
                   </span>
                 </div>
               </div>
-             <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={input.gender} />
+              <GenderCheckbox
+                onCheckboxChange={handleCheckboxChange}
+                selectedGender={input.gender}
+              />
 
               <div className="mb-5">
                 <input
@@ -195,6 +196,18 @@ const Signup = () => {
                   value="Create account"
                   className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                 />
+              </div>
+              <div>
+                <button
+                  className="btn btn-block btn-sm mt-2 border border-slate-700"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Sign Up"
+                  )}
+                </button>
               </div>
             </form>
           </div>
