@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
-import MessageContainer from "./components/Messages/MessageContainer";
-const page = () => {
+import Sidebar from "../app/components/Sidebar";
+import MessageContainer from "../app/components/Messages/MessageContainer";
+const index = () => {
   return (
     <div className="felx sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
       <Sidebar />
@@ -10,4 +10,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default index;

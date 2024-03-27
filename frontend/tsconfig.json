@@ -31,7 +31,7 @@
     "app/context/AuthContext.jsx",
     "app/hooks/useSignup.jsx",
     "app/auth/signup/page.jsx",
-    "app/App.tsx"
+    "index/page.tsx"
   ],
   "exclude": ["node_modules"]
 }
