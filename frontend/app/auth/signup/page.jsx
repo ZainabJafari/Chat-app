@@ -23,9 +23,9 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit button clicked"); // Kontrollera om denna logg visas i konsolen
+    console.log("Submit button clicked"); 
     await signup(input); 
-    router.push('/')
+    router.push("/");
   };
 
   return (

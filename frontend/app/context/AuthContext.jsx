@@ -1,4 +1,3 @@
-// AuthContextProvider
 "use client"
 import { createContext, useContext, useState, useEffect } from "react";
 
@@ -14,7 +13,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("chat-user");
     if (storedUser) {
-      setAuthUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setAuthUser(parsedUser);
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+        // Handle parsing error appropriately
+      }
     }
   }, []); 
 

@@ -40,7 +40,7 @@ const useSignup = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(data.user)
+      console.log(data.user);
       const localStorageSuccess = localStorage.setItem(
         "chat-user",
         JSON.stringify(data.user)
