@@ -40,14 +40,15 @@ const useSignup = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(data.user);
-      const localStorageSuccess = localStorage.setItem(
-        "chat-user",
-        JSON.stringify(data.user)
-      );
-      console.log("localStorageSuccess:", localStorageSuccess);
-
-      setAuthUser(data);
+      
+      // Sparar endast användardata i local storage
+      localStorage.setItem("chat-user", JSON.stringify(data.user));
+      
+      // Uppdatera användarinformation i contexten
+      setAuthUser(data.user);
+      
+      // Meddela användaren om att registreringen lyckades
+      console.log("Registration successful and save i local storage", setAuthUser);
     } catch (error) {
       toast.error(error.message);
     } finally {
