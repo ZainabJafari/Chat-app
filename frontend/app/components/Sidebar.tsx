@@ -1,7 +1,7 @@
 import React from "react";
 import SearchInput from "./SearchInput";
 import Conversations from "./Conversations";
-// import LougoutButton from "./LougoutButton";
+import LougoutButton from "./LougoutButton";
 
 const Sidebar = () => {
   return (
@@ -9,7 +9,7 @@ const Sidebar = () => {
       <SearchInput />
       <div className="divider px-3"></div>
       <Conversations />
-      {/* <LougoutButton /> */}
+      <LougoutButton />
     </div>
   );
 };

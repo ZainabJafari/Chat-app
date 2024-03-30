@@ -1,29 +1,30 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuthContext } from "../app/context/AuthContext";
-import Index from "../index/page";
+import Sidebar from "./components/Sidebar";
+import MessageContainer from "./components/Messages/MessageContainer";
 
 export default function Home() {
   const router = useRouter();
   const { authUser } = useAuthContext();
 
   useEffect(() => {
-    // Om användaren inte är inloggad och inte på /login-sidan, skicka dem till inloggningssidan
-    if (!authUser && router.pathname !== "/login") {
-      router.push("/login");
+    if (!authUser && router.pathname !== "/auth/login") {
+      router.push("/auth/login");
     }
   }, [authUser, router.pathname]);
+  
 
   // Om användaren är inloggad, rendera startsidan
   if (authUser) {
     return (
-      <main className="p-4 h-screen flex items-center justify-center">
-        <Index />
-      </main>
+      <div className="p-4 h-screen flex items-center justify-center">
+            <Sidebar />
+      <MessageContainer />
+      </div>
     );
   }
 
-  // Om användaren inte är inloggad, returnera null (eller visa en laddningsskärm eller annat meddelande)
   return null;
 }
 

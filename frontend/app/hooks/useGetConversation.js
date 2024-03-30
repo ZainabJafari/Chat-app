@@ -14,7 +14,7 @@ const useGetConversation = () => {
           throw new Error(data.error);
         }
         setConversation(data);
-        console.log("det är uders", data.user);
+        console.log("det är uders", data);
       } catch (error) {
         console.log(error.message);
       } finally {

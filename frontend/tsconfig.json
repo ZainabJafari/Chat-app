@@ -32,6 +32,6 @@
     "app/hooks/useSignup.jsx",
     "app/auth/signup/page.jsx",
     "index/page.tsx"
-  ],
+, "app/components/Conversations.tsx", "app/hooks/useGetConversation.js"  ],
   "exclude": ["node_modules"]
 }
