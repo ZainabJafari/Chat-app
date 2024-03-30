@@ -1,9 +1,20 @@
-import React from "react";
-
+import React, { useState } from "react";
+import useSendMessage from '../../hooks/useSendMessage'
+import { BsSend } from "react-icons/bs";
 const MessageInput = () => {
+
+  const [message, setMessage] = useState('')
+  const {sendMessage , loading} = useSendMessage()
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    if(!message) return;
+    await sendMessage(message)
+    setMessage('')
+  }
   return (
     <div>
-      {/* <form className="px-4 my-3" onSubmit={handleSubmit}>
+      <form className="px-4 my-3" onSubmit={handleSubmit}>
         <div className="w-full relative">
           <input
             type="text"
@@ -23,7 +34,7 @@ const MessageInput = () => {
             )}
           </button>
         </div>
-      </form> */}
+      </form>
     </div>
   );
 };
