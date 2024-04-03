@@ -1,8 +1,8 @@
-"use client"
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { User } from "../type/user";
 
 interface AuthContextValue {
-  authUser: any; 
+  authUser:  User | null; 
   setAuthUser: React.Dispatch<React.SetStateAction<any>>; 
 }
 
@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         const parsedUser = JSON.parse(storedUser);
         setAuthUser(parsedUser);
       } catch (error) {
-        console.error("Error parsing JSON:", error);
+        console.log("Error parsing JSON:", error);
       }
     }
   }, []); 

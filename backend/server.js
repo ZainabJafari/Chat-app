@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -11,25 +11,28 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express();
 const corsOptions = {
-  origin: 'http://localhost:5173',
-  optionsSuccessStatus: 200 
+  origin: "http://localhost:5173",
+  credentials: true,
 };
+
+app.get('/test-cookie', (req, res) => {
+  res.cookie('test', 'value', { httpOnly: true, sameSite: 'lax', secure: false });
+  res.send('Test cookie set');
+});
 
 app.use(cors(corsOptions));
 const PORT = process.env.PORT || 2000;
 
-dotenv.config()
+dotenv.config();
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use("/api/auth", authRoutes)
-app.use("/api/messages", messageRoutes)
-app.use("/api/user", userRoutes)
-
-
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/user", userRoutes);
 
 app.listen(PORT, () => {
   connectToMongoDB();
- console.log(`Server Running on port ${PORT}!`)
-})
+  console.log(`Server Running on port ${PORT}!`);
+});

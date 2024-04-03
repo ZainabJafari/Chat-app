@@ -1,43 +1,41 @@
-// Använd "use client" som tidigare specificerat om det behövs för ditt projekt.
-"use client";
-
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
-import User from "../type/user"; // Anta att detta är sökvägen till ditt User-interface
-
-// Skapa en ny typ eller interface för att hantera signup-specifika fält
-interface SignupData extends Omit<User, 'createdAt' | 'updatedAt' | '_id'> {
-  confirmPassword: string;
-}
+import { User } from "../type/user";
 
 const useSignup = () => {
-  const [loading, setLoading] = useState<boolean>(false); // Använd TypeScript för att definiera boolean typ
+  const [loading, setLoading] = useState<boolean>(false);
   const { setAuthUser } = useAuthContext();
 
-  const signup = async (userData: SignupData) => {
-    const { confirmPassword, ...rest } = userData;
+  const signup = async (userData: User) => {
     const success = handleInputErrors(userData);
     if (!success) return;
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch("http://localhost:2000/api/auth/signup", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(rest), // Använd rest för att undvika att skicka confirmPassword till servern
+        body: JSON.stringify({
+          fullName: userData.fullName,
+          userName: userData.userName,
+          password: userData.password,
+          confirmPassword: userData.confirmPassword,
+          gender: userData.gender,
+        }),
       });
 
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);
       }
-
+      console.log(data);
       localStorage.setItem("chat-user", JSON.stringify(data));
-      setAuthUser(data); // Antag att data här passar den struktur som förväntas av setAuthUser
+      setAuthUser(data); // Antag att detta är korrekt anpassat till din applikations behov
     } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
+      if (error) {
+        console.log("first error");
       }
     } finally {
       setLoading(false);
@@ -49,26 +47,24 @@ const useSignup = () => {
 
 export default useSignup;
 
-// Notera att jag har uppdaterat parametrarna till att acceptera SignupData typen
-function handleInputErrors({
-  fullName,
-  userName,
-  password,
-  confirmPassword,
-  gender,
-}: SignupData): boolean {
-  // Dina kontroller här, nu med typer
-  if (!fullName || !userName || !password || !confirmPassword || !gender) {
+function handleInputErrors(userData: User): boolean {
+  if (
+    !userData.fullName ||
+    !userData.userName ||
+    !userData.password ||
+    !userData.confirmPassword ||
+    !userData.gender
+  ) {
     toast.error("Please fill in all fields");
     return false;
   }
 
-  if (password !== confirmPassword) {
+  if (userData.password !== userData.confirmPassword) {
     toast.error("Passwords do not match");
     return false;
   }
 
-  if (password.length < 6) {
+  if (userData.password.length < 6) {
     toast.error("Password must be at least 6 characters");
     return false;
   }

@@ -5,7 +5,7 @@ interface GenderCheckboxProps {
   selectedGender: "male" | "female" | "";
 }
 
-const GenderCheckbox: React.FC<GenderCheckboxProps> = ({ onCheckboxChange, selectedGender }) => {
+const GenderCheckbox: React.FC<GenderCheckboxProps> = ({ onCheckboxChange, selectedGender, }) => {
   return (
     <div className='flex'>
       <div className='form-control'>

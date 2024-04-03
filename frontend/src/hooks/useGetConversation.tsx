@@ -14,13 +14,20 @@ const useGetConversation = () => {
     const getConversation = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:2000/api/user");
+        const response = await fetch('http://localhost:2000/api/user', {
+          method: 'GET', // eller 'POST', etc.
+          credentials: 'include', // Viktigt för att inkludera cookies i begäran
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
         const data: ConversationResponse = await response.json();
+        console.log(data)
         if (data.error) {
           throw new Error(data.error);
         }
-        setConversation(data.conversations);
-        console.log("det är uders", data.conversations);
+        setConversation(data);
+        console.log("det är uders", data);
       } catch (error) {
       } finally {
         setLoading(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 
 const useLogout = () => {
@@ -22,7 +22,6 @@ const useLogout = () => {
             setAuthUser(null)
             
         } catch (error) {
-            console.log(error.message)
         }finally {
             setLoading(false)
     }}

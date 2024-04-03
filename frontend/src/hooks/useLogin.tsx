@@ -1,55 +1,56 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
-import User from "../type/user"; // Anpassa importvägen
+import { User } from "../type/user"; // Anta att detta är sökvägen till ditt User-interface
+// import { error } from "console";
 
-// Notera: Du kanske behöver anpassa denna del beroende på din autentiseringslogik
-interface LoginResponse {
-  user: User; // Antag att detta är den data du får tillbaka vid en lyckad inloggning
-  token: string; // Ett exempel på hur du kan hantera autentiseringstokens
-}
+// interface LoginResponse {
+//     user: User;
+//     error?: string; // Lägg till ett error-fält ifall servern svarar med ett fel
+// }
 
 const useLogin = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const { setAuthUser } = useAuthContext();
+    const [loading, setLoading] = useState<boolean>(false);
+    const { setAuthUser } = useAuthContext();
 
-  const login = async (userName: string, password: string) => {
-    const success = handleInputErrors(userName, password);
-    if (!success) return;
-    setLoading(true);
-    try {
-      const res = await fetch("http://localhost:2000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userName, password }),
-      });
+    // Notera: vi returnerar inte längre User direkt från login-funktionen
+    const login = async (userName: string, password: string): Promise<void> => {
+        const success = handleInputErrors(userName, password);
+        if (!success) return;
 
-      const data: LoginResponse = await res.json();
-      if (data.user && data.token) {
-        localStorage.setItem("chat-user", JSON.stringify(data.user));
-        localStorage.setItem("chat-token", data.token);
-        setAuthUser(data.user); // Använd denna metod för att uppdatera användarstaten i din app
-      } else if (data.user) {
-        throw new Error();
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+        setLoading(true);
+        try {
+            const res = await fetch("http://localhost:2000/api/auth/login", {
+                method: "POST",
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userName, password }),
+            });
 
-  return { loading, login };
+            const data: User = await res.json();
+            if (!data) {
+                console.log('error: no user');
+            }
+
+            localStorage.setItem("chat-user", JSON.stringify(data)); // Antag att du vill spara användaren i local storage
+            setAuthUser(data); // Uppdatera auth-context med användardata
+        } catch (error) {
+            if (error) {
+                console.log('Error with login');
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { loading, login };
 };
-
 export default useLogin;
 
 function handleInputErrors(userName: string, password: string): boolean {
-  if (!userName || !password) {
-    toast.error("Please fill in all fields");
-    return false;
-  }
-  return true;
+    if (!userName || !password) {
+        console.log("Please fill in all fields");
+        return false;
+    }
+
+    return true;
 }
