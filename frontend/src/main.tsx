@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App.js";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider } from "./context/AuthContext.jsx";
+import { AuthContextProvider } from "./context/AuthContext.js";
 // import { SocketContextProvider } from "./context/SocketContext.jsx";
 
 const rootElement = document.getElementById("root");
@@ -14,7 +14,7 @@ if (rootElement) {
       <BrowserRouter>
         <AuthContextProvider>
           {/* <SocketContextProvider> */}
-            <App />
+          <App />
           {/* </SocketContextProvider> */}
         </AuthContextProvider>
       </BrowserRouter>
