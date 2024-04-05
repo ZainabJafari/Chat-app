@@ -32,10 +32,10 @@ const useSignup = () => {
       }
       console.log(data);
       localStorage.setItem("chat-user", JSON.stringify(data));
-      setAuthUser(data); // Antag att detta är korrekt anpassat till din applikations behov
+      setAuthUser(data); 
     } catch (error) {
       if (error) {
-        console.log("first error");
+        console.log(error);
       }
     } finally {
       setLoading(false);

@@ -32,7 +32,6 @@ const Login = () => {
         </h1>
 
         <form onSubmit={handleSubmit}>
-          {/* Användarname-fält */}
           <div>
             <label className="label p-2">
               <span className="text-base label-text">Username</span>
@@ -46,7 +45,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Lösenordsfält */}
           <div>
             <label className="label">
               <span className="text-base label-text">Password</span>
@@ -59,13 +57,10 @@ const Login = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          
-          {/* Länk till registreringssida */}
+
           <Link to="/signup" className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
             {"Don't"} have an account?
           </Link>
-
-          {/* Inloggningsknapp */}
           <div>
             <button className="btn btn-block btn-sm mt-2" disabled={loading}>
               {loading ? (

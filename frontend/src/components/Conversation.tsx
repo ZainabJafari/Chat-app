@@ -1,11 +1,9 @@
-// Importera useConversation-kroken från rätt sökväg
 import useConversationHook from "../zustand/useConversation";
-import ConversationType from '../type/conversation'
+import ConversationType from "../type/conversation";
 
 const Conversation = ({ conversation }: { conversation: ConversationType }) => {
   const { selectedConversation, setSelectedConversation } = useConversationHook();
 
-  // Kontrollera om den aktuella konversationen är vald
   const isSelected = selectedConversation?._id === conversation._id;
 
   return (

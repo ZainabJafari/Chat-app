@@ -15,8 +15,8 @@ const useGetConversation = () => {
       setLoading(true);
       try {
         const response = await fetch('http://localhost:2000/api/user', {
-          method: 'GET', // eller 'POST', etc.
-          credentials: 'include', // Viktigt för att inkludera cookies i begäran
+          method: 'GET', 
+          credentials: 'include', 
           headers: {
             'Content-Type': 'application/json',
           },
