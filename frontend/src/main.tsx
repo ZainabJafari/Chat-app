@@ -4,7 +4,7 @@ import App from "./App.js";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.js";
-// import { SocketContextProvider } from "./context/SocketContext.jsx";
+import {  SocketContextProvider } from "./context/SocketContext.js";
 
 const rootElement = document.getElementById("root");
 
@@ -13,9 +13,9 @@ if (rootElement) {
     <React.StrictMode>
       <BrowserRouter>
         <AuthContextProvider>
-          {/* <SocketContextProvider> */}
+          <SocketContextProvider>
           <App />
-          {/* </SocketContextProvider> */}
+          </SocketContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </React.StrictMode>

@@ -8,17 +8,17 @@ import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
+import {app , server} from './socket/socket.js'
 
-const app = express();
 const corsOptions = {
   origin: "http://localhost:5173",
   credentials: true,
 };
 
-app.get('/test-cookie', (req, res) => {
-  res.cookie('test', 'value', { httpOnly: true, sameSite: 'lax', secure: false });
-  res.send('Test cookie set');
-});
+// app.get('/test-cookie', (req, res) => {
+//   res.cookie('test', 'value', { httpOnly: true, sameSite: 'lax', secure: false });
+//   res.send('Test cookie set');
+// });
 
 app.use(cors(corsOptions));
 const PORT = process.env.PORT || 2000;
@@ -32,7 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/user", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`Server Running on port ${PORT}!`);
 });
