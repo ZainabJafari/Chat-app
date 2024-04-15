@@ -11,9 +11,12 @@ interface ConversationState {
 
 const useConversation = create<ConversationState>((set: SetState<ConversationState>) => ({
   selectedConversation: null,
-  setSelectedConversation: (selectedConversation: Conversation | null) => set({ selectedConversation }), 
+  setSelectedConversation: (selectedConversation: Conversation | null) => {
+    set({ selectedConversation, messages: [] }); // Rensa meddelanden när en ny konversation väljs
+  },
   messages: [],
   setMessages: (messages: Message[]) => set({ messages }),
 }));
+
 
 export default useConversation;

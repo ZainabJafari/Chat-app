@@ -34,7 +34,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
-              <span className="text-base label-text bg-red-200">Username</span>
+              <span className="text-base label-text">Username</span>
             </label>
             <input
               type="text"

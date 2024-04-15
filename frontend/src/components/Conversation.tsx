@@ -22,10 +22,8 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
           </div>
         </div>
 
-        <div className="flex flex-col flex-1">
-          <p className="font-bold">Full Name:</p>
-          <h1>{conversation.fullName}</h1>
-          {/* Visar eventuella andra relevanta detaljer om konversationen */}
+        <div className="">
+          <p className="text-white text-l">{conversation.fullName}</p>
         </div>
       </div>
     </>

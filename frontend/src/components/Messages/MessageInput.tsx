@@ -3,15 +3,13 @@ import useSendMessage from '../../hooks/useSendMessage';
 import { BsSend } from "react-icons/bs";
 
 const MessageInput = () => {
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<any>('');
   const { sendMessage, loading } = useSendMessage();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!message) return;
-    const newMessage: any = { // Skapa ett nytt meddelandeobjekt
-      senderId: 'YOUR_SENDER_ID', // Ersätt med rätt värden
-      receiverId: 'YOUR_RECEIVER_ID',
+    const newMessage: any = {
       message: message
     };
     await sendMessage(newMessage);

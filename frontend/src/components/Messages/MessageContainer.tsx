@@ -13,7 +13,7 @@ const MessageContainer: React.FC = () => {
 	}, [setSelectedConversation]);
 
 	return (
-		<div className="md:min-w-[450px] flex flex-col bg-red-400">
+		<div className="md:min-w-[450px] flex flex-col bg-[#fdb44b] rounded-md">
 			{!selectedConversation ? (
 				<NochatSelected />
 			) : (
