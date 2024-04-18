@@ -38,14 +38,6 @@ const NochatSelected: React.FC = () => {
 	return (
 			<div className="sticky flex items-center justify-between border-b border-stroke px-6 py-4.5 dark:border-strokedark">
               <div className="flex items-center">
-                <div className="mr-4.5 w-10 rounded-full">
-                  <img
-                    src={authUser?.profilePic}
-                    alt="avatar"
-                    className="object-cover object-center"
-             
-                  />
-                </div>
                 <div>
                   <h5 className="font-medium text-black dark:text-white">
 				  {authUser?.fullName}
