@@ -15,11 +15,6 @@ const corsOptions = {
   credentials: true,
 };
 
-// app.get('/test-cookie', (req, res) => {
-//   res.cookie('test', 'value', { httpOnly: true, sameSite: 'lax', secure: false });
-//   res.send('Test cookie set');
-// });
-
 app.use(cors(corsOptions));
 const PORT = process.env.PORT || 2000;
 
