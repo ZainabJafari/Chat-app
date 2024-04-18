@@ -4,8 +4,8 @@ interface Conversation {
     messages: string[]; 
     createdAt?: string; 
     updatedAt?: string; 
-    profilePic: string; // Lägg till profilePic-egenskapen
-    fullName: string; // Lägg till fullName-egenskapen
+    profilePic: string; 
+    fullName: string; 
   }
   
   export default Conversation;

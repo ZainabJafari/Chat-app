@@ -1,11 +1,8 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { useAuthContext } from "./AuthContext"; // Antag att du har denna definierad någonstans
+import { useAuthContext } from "./AuthContext"; 
 import io from "socket.io-client";
 
-// Om du prioriterar typsäkerhet, kan du definiera en egen typ eller interface här
-// baserat på de metoder och egenskaper från socket-objektet som du använder.
-// För enkelhetens skull använder vi `any` här, men överväg att definiera en mer specifik typ.
-type SocketType = any; // Ersätt `any` med en mer specifik typ om möjligt
+type SocketType = any; 
 
 type SocketContextType = {
     socket: SocketType | null;
@@ -29,7 +26,7 @@ interface SocketContextProviderProps {
 export const SocketContextProvider: React.FC<SocketContextProviderProps> = ({ children }) => {
     const [socket, setSocket] = useState<SocketType | null>(null);
     const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
-    const { authUser } = useAuthContext(); // Antag att detta returnerar en användare med en `_id`
+    const { authUser } = useAuthContext(); 
 
     useEffect(() => {
         if (authUser?._id) {

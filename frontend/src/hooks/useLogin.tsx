@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 
-// interface LoginResponse {
-//     user: User;
-//     error?: string; // Lägg till ett error-fält ifall servern svarar med ett fel
-// }
-
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(""); // Lägg till ett state för att hantera felmeddelanden
+    const [error, setError] = useState(""); 
     const { setAuthUser } = useAuthContext();
 
     const login = async (userName: string, password: string) => {
