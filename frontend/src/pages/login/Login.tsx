@@ -1,5 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
@@ -7,21 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   
-  const { loading, login } = useLogin();
-  const navigate = useNavigate();
+  const { loading, login, error } = useLogin();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await login(userName, password);
-    navigate('/'); // Navigera användaren till startsidan efter lyckad inloggning
-  };
-
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
   };
 
   return (
@@ -41,7 +31,7 @@ const Login = () => {
               placeholder="Enter username"
               className="w-full input input-bordered h-10"
               value={userName}
-              onChange={handleUsernameChange}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -54,7 +44,7 @@ const Login = () => {
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -69,6 +59,8 @@ const Login = () => {
                 "Login"
               )}
             </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+
           </div>
         </form>
       </div>

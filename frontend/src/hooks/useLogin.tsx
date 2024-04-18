@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
-import { User } from "../type/user"; // Anta att detta är sökvägen till ditt User-interface
-// import { error } from "console";
 
 // interface LoginResponse {
 //     user: User;
@@ -9,11 +7,11 @@ import { User } from "../type/user"; // Anta att detta är sökvägen till ditt 
 // }
 
 const useLogin = () => {
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(""); // Lägg till ett state för att hantera felmeddelanden
     const { setAuthUser } = useAuthContext();
 
-    // Notera: vi returnerar inte längre User direkt från login-funktionen
-    const login = async (userName: string, password: string): Promise<void> => {
+    const login = async (userName: string, password: string) => {
         const success = handleInputErrors(userName, password);
         if (!success) return;
 
@@ -26,29 +24,30 @@ const useLogin = () => {
                 body: JSON.stringify({ userName, password }),
             });
 
-            const data: User = await res.json();
-            if (!data) {
-                console.log('error: no user');
+            if (!res.ok) {
+                const errorData = await res.json();
+                setError(errorData.error); 
+                return; 
             }
 
-            localStorage.setItem("chat-user", JSON.stringify(data)); // Antag att du vill spara användaren i local storage
-            setAuthUser(data); // Uppdatera auth-context med användardata
+            const data = await res.json();
+            localStorage.setItem("chat-user", JSON.stringify(data));
+            setAuthUser(data);
         } catch (error) {
-            if (error) {
-                console.log('Error with login');
-            }
+            console.error('Error with login', error);
+            setError("Failed to connect to server");
         } finally {
             setLoading(false);
         }
     };
 
-    return { loading, login };
+    return { loading, login, error };
 };
-export default useLogin;
 
+export default useLogin;
 function handleInputErrors(userName: string, password: string): boolean {
     if (!userName || !password) {
-        console.log("Please fill in all fields");
+        alert("Please fill in all fields");
         return false;
     }
 

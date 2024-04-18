@@ -1,21 +1,18 @@
-import { create, SetState } from "zustand";
+import { create } from "zustand";
 import Conversation from "../type/conversation";
 import Message from "../type/message";
 
 interface ConversationState {
   selectedConversation: Conversation | null;
-  setSelectedConversation: (conversation: Conversation | null) => void; 
+  setSelectedConversation: (selectedConversation: Conversation) => void;
   messages: Message[];
   setMessages: (messages: Message[]) => void;
 }
-
-const useConversation = create<ConversationState>((set: SetState<ConversationState>) => ({
-  selectedConversation: null,
-  setSelectedConversation: (selectedConversation: Conversation | null) => {
-    set({ selectedConversation, messages: [] }); // Rensa meddelanden när en ny konversation väljs
-  },
-  messages: [],
-  setMessages: (messages: Message[]) => set({ messages }),
+const useConversation = create<ConversationState>((set) => ({
+	selectedConversation: null,
+	setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
+	messages: [],
+	setMessages: (messages) => set({ messages }),
 }));
 
 
