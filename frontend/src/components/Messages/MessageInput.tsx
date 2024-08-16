@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react"; // Importera FormEvent
+import { useState, FormEvent } from "react";
 import useSendMessage from '../../hooks/useSendMessage';
 import { BsSend } from "react-icons/bs";
 

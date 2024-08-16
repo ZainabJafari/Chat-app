@@ -6,6 +6,7 @@ import useConversation from "../../zustand/useConversation";
 const Message = ({ message }: any) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
+
   const fromMe = message.senderId === authUser?._id;
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? "justify-end" : "justify-start";

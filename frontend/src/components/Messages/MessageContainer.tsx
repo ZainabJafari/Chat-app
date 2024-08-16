@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Messages from "./Messages";
-import { TiMessages } from "react-icons/ti";
 import useConversation from "../../zustand/useConversation";
 import MessageInput from "./MessageInput";
 import { useAuthContext } from "../../context/AuthContext";
@@ -37,10 +36,14 @@ const NochatSelected: React.FC = () => {
 			<h2 className="text-xl pt-2 text-white">Welcome {authUser?.fullName}</h2>
 			<p className="text-white">Select a conversation to start chatting!</p>
 			<div className="flex justify-center pt-2 text-3xl text-white">
-			<TiMessages />
-			</div>
+{/* 			<TiMessages />
+ */}			</div>
 		</div>
 	);
 };
 
 export default MessageContainer;
+
+
+
+

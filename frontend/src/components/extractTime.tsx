@@ -5,7 +5,6 @@ export function extractTime(dateString: any) {
 	return `${hours}:${minutes}`;
 }
 
-// Helper function to pad single-digit numbers with a leading zero
 function padZero(number: any) {
 	return number.toString().padStart(2, "0");
 }

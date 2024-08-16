@@ -6,10 +6,10 @@ const generateTokenAndSetCookie = (userId, res) => {
 	});
 
 	res.cookie("jwt", token, {
-		maxAge: 15 * 24 * 60 * 60 * 1000, // 15 dagar i millisekunder
-		httpOnly: true, // Förhindrar åtkomst via klient-sidans script
-		sameSite: 'lax', // Eller 'none' om du behöver skicka cookies över olika domäner
-		secure: false, // Sätt till true om du använder https även i utveckling
+		maxAge: 15 * 24 * 60 * 60 * 1000,
+		httpOnly: true, 
+		sameSite: 'lax', 
+		secure: false, 
 	});
 };
 

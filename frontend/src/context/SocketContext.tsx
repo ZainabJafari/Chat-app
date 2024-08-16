@@ -27,7 +27,7 @@ interface SocketContextProviderProps {
 export const SocketContextProvider: React.FC<SocketContextProviderProps> = ({ children }) => {
     const [socket, setSocket] = useState<SocketType | null>(null);
     const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
-    const { authUser } = useAuthContext(); // Antag att detta returnerar en användare med en `_id`
+    const { authUser } = useAuthContext(); 
 
     useEffect(() => {
         if (authUser) {
