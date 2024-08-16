@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import { User } from "../type/user";
 
 interface AuthContextValue {
@@ -21,19 +21,8 @@ export const useAuthContext = () => {
 };
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [authUser, setAuthUser] = useState<any>(null); 
+  const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("chat-user") || "null") as User | null,);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("chat-user");
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setAuthUser(parsedUser);
-      } catch (error) {
-        console.log("Error parsing JSON:", error);
-      }
-    }
-  }, []); 
 
   return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
 };

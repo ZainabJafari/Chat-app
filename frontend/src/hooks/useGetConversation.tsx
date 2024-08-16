@@ -22,12 +22,10 @@ const useGetConversation = () => {
           },
         });
         const data: ConversationResponse = await response.json();
-        console.log(data)
         if (data.error) {
           throw new Error(data.error);
         }
         setConversation(data);
-        console.log("det är uders", data);
       } catch (error) {
       } finally {
         setLoading(false);

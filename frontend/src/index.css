@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	background: #00204a;
+	background: #222831;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -18,7 +18,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #121212;
+	background: #151414;
 	border-radius: 5px;
 }
 

@@ -28,7 +28,7 @@ const SearchInput = () => {
 			<input
 				type='text'
 				placeholder='Search…'
-				className='input input-bordered rounded-full p-1'
+				className='input input-bordered rounded-full p-3'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>

@@ -25,6 +25,8 @@ const useSendMessage = () => {
                 throw new Error(data.error);
             }
             setMessages([...messages, data]);
+            console.log( 'det är data', data, 'det är messages', messages);
+
         } catch (error) {
             console.log(error);
         } finally {

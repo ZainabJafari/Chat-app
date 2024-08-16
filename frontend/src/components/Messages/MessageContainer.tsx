@@ -13,14 +13,14 @@ const MessageContainer: React.FC = () => {
 	}, [setSelectedConversation]);
 
 	return (
-		<div className="md:min-w-[450px] flex flex-col bg-[#fdb44b] rounded-md">
+		<div className="w-full flex flex-col bg-[#393e46] border-[#222831] rounded-r-md border-l-2">
 			{!selectedConversation ? (
 				<NochatSelected />
 			) : (
 				<>
-					<div className="bg-slate-500 px-4 py-2 mb-2">
-						<span className="label-text">To:</span>{" "}
-						<span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
+					<div className="flex p-3 border-b-2 border-[#85a6b1]">
+						<img className="h-12 w-12" src={selectedConversation.profilePic}></img>
+						<span className="text-white font-bold pt-3 pl-2">{selectedConversation.fullName}</span>
 					</div>
 					<Messages />
 					<MessageInput />
@@ -34,9 +34,11 @@ const NochatSelected: React.FC = () => {
 	const {authUser} = useAuthContext()
 	return (
 		<div className="flex flex-col felx-1">
-			<h2>welcome {authUser?.fullName}</h2>
-			<p className="font-bold">Select a conversation to start chatting!</p>
+			<h2 className="text-xl pt-2 text-white">Welcome {authUser?.fullName}</h2>
+			<p className="text-white">Select a conversation to start chatting!</p>
+			<div className="flex justify-center pt-2 text-3xl text-white">
 			<TiMessages />
+			</div>
 		</div>
 	);
 };
