@@ -10,17 +10,13 @@ import userRoutes from "./routes/user.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import {app , server} from './socket/socket.js'
 
-const corsOptions = {
-  origin: "http://localhost:5173",
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-const PORT = process.env.PORT || 2000;
-
+dotenv.config();
 const __dirname = path.resolve()
 
-dotenv.config();
+app.use(cors(corsOptions));
+const PORT = process.env.PORT || 5000;
+
+
 
 app.use(express.json());
 app.use(cookieParser());
