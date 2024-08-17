@@ -36,8 +36,7 @@ const NochatSelected: React.FC = () => {
 			<h2 className="text-xl pt-2 text-white">Welcome {authUser?.fullName}</h2>
 			<p className="text-white">Select a conversation to start chatting!</p>
 			<div className="flex justify-center pt-2 text-3xl text-white">
-{/* 			<TiMessages />
- */}			</div>
+		</div>
 		</div>
 	);
 };

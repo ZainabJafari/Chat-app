@@ -11,8 +11,6 @@ const useListenMessages = () => {
     useEffect(() => {
         const handleNewMessage = (newMessage: Message) => {
             if (selectedConversation && newMessage._id === selectedConversation._id) {
-                // const sound = new Audio(notificationSound);
-                // sound.play();
                 const updatedMessages = [...messages, newMessage];
                 setMessages(updatedMessages);
             }

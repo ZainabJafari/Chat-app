@@ -17,11 +17,8 @@ const Message = ({ message }: any) => {
   const textColor = fromMe ? "text-white" : "text-black";
 
   const shakeClass = message.shouldShake ? "shake" : "";
-
-  // Ref för att referera till den sista meddelandebubblan
   const messageEndRef = useRef<HTMLDivElement>(null);
 
-  // Skrolla till botten när komponenten renderas eller uppdateras
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
@@ -31,6 +28,7 @@ const Message = ({ message }: any) => {
       {!fromMe && (
         <div className="chat-image avatar mr-3">
           <div className="w-10 h-10 rounded-full">
+            <img src={profilePic} alt="" />
           </div>
         </div>
       )}

@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
+
   const [userName, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  
   const { loading, login, error } = useLogin();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

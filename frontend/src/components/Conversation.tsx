@@ -3,8 +3,8 @@ import ConversationType from "../type/conversation";
 import { useSocketContext } from "../context/SocketContext";
 
 const Conversation = ({ conversation }: { conversation: ConversationType }) => {
-  const { selectedConversation, setSelectedConversation } = useConversationHook();
-
+  const { selectedConversation, setSelectedConversation } =
+    useConversationHook();
   const isSelected = selectedConversation?._id === conversation._id;
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id!);
@@ -28,7 +28,9 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
         </div>
       </div>
       <div className={`flex flex-col justify-center overflow-hidden`}>
-        <p className={`text-white text-sm font-medium truncate`}>{conversation.fullName}</p>
+        <p className={`text-white text-sm font-medium truncate`}>
+          {conversation.fullName}
+        </p>
         {isOnline && (
           <span className="text-xs font-semibold text-green-400">Online</span>
         )}
