@@ -31,7 +31,6 @@ const Message = ({ message }: any) => {
       {!fromMe && (
         <div className="chat-image avatar mr-3">
           <div className="w-10 h-10 rounded-full">
-            <img alt="User profile" src={profilePic} />
           </div>
         </div>
       )}
