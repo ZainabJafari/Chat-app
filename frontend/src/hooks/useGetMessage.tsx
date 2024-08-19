@@ -11,7 +11,7 @@ const useGetMessages = () => {
 
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:2000/api/messages/${selectedConversation._id}`, {
+        const res = await fetch(`http://localhost:5000/api/messages/${selectedConversation._id}`, {
           method: 'GET', 
           credentials: 'include', 
           headers: {

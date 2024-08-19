@@ -4,7 +4,7 @@ import LougoutButton from "./LougoutButton";
 
 const Sidebar = () => {
   return (
-    <div className="p-4 flex flex-col bg-[#393e46]">
+    <div className="p-10 flex flex-col border border-blue-900 rounded-l-sm">
       <SearchInput />
       <div className="divider px-3"></div>
       <Conversations />

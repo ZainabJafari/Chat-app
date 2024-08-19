@@ -14,7 +14,7 @@ const useGetConversation = () => {
     const getConversation = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:2000/api/user', {
+        const response = await fetch('http://localhost:5000/api/user', {
           method: 'GET', 
           credentials: 'include', 
           headers: {

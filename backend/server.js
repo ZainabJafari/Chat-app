@@ -11,10 +11,14 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 import {app , server} from './socket/socket.js'
 
 dotenv.config();
-const __dirname = path.resolve()
+/* const __dirname = path.resolve()
+ */
+app.use(cors({
+  origin: 'http://localhost:3000', // Specificera den exakta origin som tillåts
+  credentials: true, // Tillåt credentials (cookies, headers, etc.)
 
-app.use(cors(corsOptions));
-const PORT = process.env.PORT || 5000;
+}));
+const PORT = process.env.PORT || 2000;
 
 
 
@@ -25,11 +29,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/user", userRoutes);
 
-app.use(express.static(path.json(__dirname, "/frontend/dist")))
+/* app.use(express.static(path.json(__dirname, "/frontend/dist")))
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
-})
+}) */
 
 server.listen(PORT, () => {
   connectToMongoDB();
