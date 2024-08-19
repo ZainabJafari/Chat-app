@@ -1,3 +1,4 @@
+<img width="886" alt="image" src="https://github.com/user-attachments/assets/a8f5df66-5e52-4369-92c6-1bea1070d52b">
 
 
 ![Demo](./frontend/public/NamnlsvideoGjordmedClipchamp-ezgif.com-video-to-gif-converter.gif)
