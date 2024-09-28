@@ -12,39 +12,31 @@ const MessageContainer: React.FC = () => {
 	}, [setSelectedConversation]);
 
 	return (
-<div className="md:min-w-[450px] flex flex-col bg-white rounded-md shadow-lg">
-  {!selectedConversation ? (
-    <NochatSelected />
-  ) : (
-    <>
-      <div className="flex items-center bg-slate-500 px-4 py-2 mb-2 rounded-t-md border-b border-gray-200">
-        <img alt="Profile image" src={selectedConversation.profilePic} className="w-10 h-10 rounded-full object-cover mr-3"/>
-        <span className="text-white font-bold">{selectedConversation.fullName}</span>
-      </div>
-      <div className="flex-grow overflow-y-auto">
-        <Messages />
-      </div>
-      <div className="border-t border-gray-200">
-        <MessageInput />
-      </div>
-    </>
-  )}
-</div>
+		<div className="w-full flex flex-col bg-[#030a39] border-[#222831] rounded-r-md border-l-2">
+			{!selectedConversation ? (
+				<NochatSelected />
+			) : (
+				<>
+					<div className="flex p-3 border-b-2 border-[#85a6b1]">
+						<img className="h-12 w-12" src={selectedConversation.profilePic}></img>
+						<span className="text-white font-bold pt-3 pl-2">{selectedConversation.fullName}</span>
+					</div>
+					<Messages />
+					<MessageInput />
+				</>
+			)}
+		</div>
 	);
 };
 
 const NochatSelected: React.FC = () => {
 	const {authUser} = useAuthContext()
 	return (
-			<div className="sticky flex items-center justify-between border-b border-stroke px-6 py-4.5 dark:border-strokedark">
-              <div className="flex items-center">
-                <div>
-                  <h5 className="font-medium text-black dark:text-white">
-				  {authUser?.fullName}
-                  </h5>
-                  <p className="text-sm">Reply to message</p>
-                </div>
-              </div>
+		<div className="flex flex-col felx-1">
+			<h2 className="text-xl pt-2 text-white">Welcome {authUser?.fullName}</h2>
+			<p className="text-white">Select a conversation to start chatting!</p>
+			<div className="flex justify-center pt-2 text-3xl text-white">
+		</div>
 		</div>
 	);
 };

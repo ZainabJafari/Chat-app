@@ -30,60 +30,74 @@ const SignUp = () => {
   };
 
   return (
-   <div>
-       <h1 className="text-3xl font-semibold text-center text-gray-300 mb-2">
-       Sign up<span className="text-blue-500"> ChatApp</span>
-        </h1>
-    <form onSubmit={handleSubmit} className="space-y-4">
-   <input
-     name="fullName"
-     type="text"
-     placeholder="Full Name"
-     value={inputs.fullName}
-     onChange={handleChange}
-     className="w-full p-2 border rounded-md focus:ring focus:ring-blue-500 focus:border-blue-500"
-   />
-   <input
-     name="userName"
-     type="text"
-     placeholder="Username"
-     value={inputs.userName}
-     onChange={handleChange}
-     className="w-full p-2 border rounded-md focus:ring focus:ring-blue-500 focus:border-blue-500"
-   />
-   <input
-     name="password"
-     type="password"
-     placeholder="Password"
-     value={inputs.password}
-     onChange={handleChange}
-     className="w-full p-2 border rounded-md focus:ring focus:ring-blue-500 focus:border-blue-500"
-   />
-   <input
-     name="confirmPassword"
-     type="password"
-     placeholder="Confirm Password"
-     value={inputs.confirmPassword}
-     onChange={handleChange}
-     className="w-full p-2 border rounded-md focus:ring focus:ring-blue-500 focus:border-blue-500"
-   />
-   <GenderCheckbox
-     selectedGender={inputs.gender || ''}
-     onCheckboxChange={handleCheckboxChange}
-   />
-   <button
-     type="submit"
-     disabled={loading}
-     className={`w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition ${loading ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}
-   >
-     {loading ? "Loading..." : "Sign Up"}
-   </button>
-   <Link to="/login" className="text-center text-blue-500 hover:underline">
-     Already have an account? Log in
-   </Link>
- </form>
- </div>
+   <form onSubmit={handleSubmit} className="w-1/3 mx-auto p-8 rounded-lg shadow-md">
+  <h2 className="text-2xl font-semibold text-white mb-6">Sign Up</h2>
 
+  <div className="mb-4">
+    <input
+      name="fullName"
+      type="text"
+      placeholder="Full Name"
+      value={inputs.fullName}
+      onChange={handleChange}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+
+  <div className="mb-4">
+    <input
+      name="userName"
+      type="text"
+      placeholder="Username"
+      value={inputs.userName}
+      onChange={handleChange}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+
+  <div className="mb-4">
+    <input
+      name="password"
+      type="password"
+      placeholder="Password"
+      value={inputs.password}
+      onChange={handleChange}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+
+  <div className="mb-4">
+    <input
+      name="confirmPassword"
+      type="password"
+      placeholder="Confirm Password"
+      value={inputs.confirmPassword}
+      onChange={handleChange}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+
+  <div className="mb-4">
+    <GenderCheckbox
+      selectedGender={inputs.gender || ''}
+      onCheckboxChange={handleCheckboxChange}
+    />
+  </div>
+
+  <div className="mb-4">
+    <button
+      type="submit"
+      disabled={loading}
+      className={`w-full p-3 text-white rounded-md ${loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+    >
+      {loading ? "Loading..." : "Sign Up"}
+    </button>
+  </div>
+
+  <p className="text-center text-white">
+    Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Log in</Link>
+  </p>
+</form>
 
   );
 };

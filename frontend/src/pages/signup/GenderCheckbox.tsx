@@ -7,10 +7,10 @@ interface GenderCheckboxProps {
 
 const GenderCheckbox: React.FC<GenderCheckboxProps> = ({ onCheckboxChange, selectedGender, }) => {
   return (
-    <div className='flex'>
+    <div className='flex justify-evenly'>
       <div className='form-control'>
         <label className={`label gap-2 cursor-pointer ${selectedGender === "male" ? "selected" : ""} `}>
-          <span className='label-text text-white'>Male</span>
+          <span className='label-text text-xl text-white p-2'>Male</span>
           <input
             type='checkbox'
             className='checkbox border-slate-900 ml-1'
@@ -21,7 +21,7 @@ const GenderCheckbox: React.FC<GenderCheckboxProps> = ({ onCheckboxChange, selec
       </div>
       <div className='form-control'>
         <label className={`label gap-2 cursor-pointer  ${selectedGender === "female" ? "selected" : ""}`}>
-          <span className='label-text text-white ml-3'>Female</span>
+          <span className='label-text text-xl text-white p-2'>Female</span>
           <input
             type='checkbox'
             className='checkbox border-slate-900 ml-1'
